@@ -7,5 +7,15 @@
 <body>
 	<h1>Sample app</h1>
 	<p>Angular next version - Angular{{ 1 + 1 }}</p>
+	<section ng-controller="myCtrl as $ctrl">
+
+		<p ng-bind="$ctrl.myVar"></p>
+		<ol>
+			<li ng-repeat="user in $ctrl.list">
+				<span ng-bind="user.name"></span>
+				<button ng-click="$ctrl.clickMe($index)">Click me</button>
+			</li>
+		</ol>
+	</section>
 </body>
 </html>
