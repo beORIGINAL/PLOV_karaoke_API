@@ -3,13 +3,16 @@
 <head>
 	<base href="/">
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Songs reserving App</title>
 </head>
-<body>
-	<md-button ui-sref="all-songs-list" ui-sref-active="active">all-songs-list</md-button>
-	<md-button ui-sref="ordered-play-list" ui-sref-active="active">Ordered-play-list</md-button>
-	<md-button ui-sref="ordered-song-list" ui-sref-active="active">Ordered-song-list</md-button>
-
-	<ui-view layout="column" layout-align="center center" ng-cloak></ui-view>
+<body layout="column" layout-align="center center" layout-padding>
+	<ui-view layout="row" flex ng-cloak layout-padding></ui-view>
+	<div layout="row">
+		<md-button ui-sref="ordered-play-list" ui-sref-active="active">Ordered-play-list</md-button>
+	</div>
 </body>
 </html>

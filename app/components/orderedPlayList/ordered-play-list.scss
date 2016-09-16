@@ -1,3 +1,9 @@
-h2 {
-  color: blue;
+ordered-play-list {
+  position: relative;
+
+  .md-fab {
+    position: absolute;
+    top: 80%;
+    left: 80%;
+  }
 }

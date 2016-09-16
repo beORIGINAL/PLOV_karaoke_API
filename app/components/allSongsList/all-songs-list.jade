@@ -1,1 +1,35 @@
-h2 All Songs List
+md-content.md-whiteframe-6dp
+    md-toolbar
+        .md-toolbar-tools
+            md-button.md-icon-button(ui-sref="ordered-song-list")
+                md-tooltip(md-direction="right")
+                    | Back to order list?
+                strong <
+            h2(flex ) List with all songs
+            md-button(ng-click="$ctrl.orderSelectedSongs()", ng-if="$ctrl.canOrderSongs").md-fab.md-mini.md-primary
+                md-tooltip(md-direction="left")
+                    | Add selected songs
+                strong +
+    form.search-query-container(layout="column", layout-align="center center", name="songsAddingFrom", layout-fill)
+        .search(layout="row", layout-fill, layout-align="center center")
+            md-input-container.md-block(flex="50")
+                label Enter song name...
+                input(type="search", required, name="search-query", ng-model="$ctrl.searchQuery", ng-change="$ctrl.findSongsByQuery()")
+                .error-messages(ng-messages="songsAddingFrom.earchQuery.$error", multiple, md-auto-hide="false")
+                    .error(ng-message="required")
+                        | Field is required
+                    .error(ng-message="minlength")
+                        | Min length is 3
+            md-button.md-primary(ng-if="$ctrl.searchQuery.length", ng-click="$ctrl.getDefaultData()") X
+        md-content(layout="row", layout-fill)
+            md-list(ng-if="$ctrl.searchResult.length", flex)
+                md-subheader
+                    span(ng-bind="$ctrl.searchResult.length")
+                    | &nbsp;songs found
+                md-list-item(ng-repeat="song in $ctrl.searchResult track by song.id")
+                    .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+                        .md-list-item-text(layout="column", flex="70")
+                            h3(ng-bind="song.title")
+                            p(ng-bind="song.artist")
+                        md-checkbox(ng-model="song.selected")
+                    md-divider(ng-if="!$last")

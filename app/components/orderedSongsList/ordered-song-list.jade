@@ -1,1 +1,30 @@
-h2 Ordered song list
+md-content.md-whiteframe-6dp
+    md-toolbar
+        .md-toolbar-tools
+            h2(flex) Reserve songs for your evening
+            md-button.md-icon-button(ui-sref="all-songs-list({id: $ctrl.qurrentReservationTable})")
+                md-tooltip(md-direction="left")
+                    | Wants more?
+                strong >
+    md-tabs(md-border-bottom, md-align-tabs="bottom", layout="row", flex).md-primary
+        md-tab(ng-repeat="table in $ctrl.tablesWhoReserve track by $index", id="Table {{table.id}}", ng-click="$ctrl.loadReservedSongs(table.id)")
+            md-tab-label
+                span(ng-bind="table.id")
+                span(ng-bind="table.name")
+            md-tab-body
+                md-virtual-repeat-container#songs-container
+                    md-list-item(md-virtual-repeat="song in $ctrl.reservedSongsList")
+                        .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+                            .md-list-item-text(layout="column", flex="70")
+                                h3(ng-bind="song.title")
+                                p(ng-bind="song.artist")
+                            .actions
+                                md-button(ng-click="$ctrl.orderSong(song.id)").md-primary
+                                    | Reserve
+                                    br
+                                    | Song
+                                md-button(ng-click="$ctrl.cancelOrdering(song.id)").md-warn
+                                    | Cancel
+                                    br
+                                    | Reservation
+                        md-divider(ng-if="!$last")

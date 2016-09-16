@@ -1,5 +1,8 @@
-md-content(layout="column")
+md-content(flex).md-whiteframe-6dp
     md-toolbar(layout="row")
-        h2 Ordered Play list
-    md-virtual-repeat-container#orderedPlayList
+        .md-toolbar-tools
+            h2.md-flex Ordered Play list
+    md-virtual-repeat-container(layout-padding)#orderedPlayList
         .repeated-item(md-virtual-repeat="song in ctrl.songsList", md-on-demand, ng-bind="song")
+md-button(ui-sref="all-songs-list").md-fab.md-mini
+    strong +

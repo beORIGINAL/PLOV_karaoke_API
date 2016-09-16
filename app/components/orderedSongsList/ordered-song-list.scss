@@ -1,3 +1,22 @@
-h2 {
-  color: greenyellow;
+ordered-song-list {
+  & > md-content {
+    min-height: 600px;
+  }
+  md-tabs {
+    height: 600px;
+
+    #songs-container {
+      width: 100%;
+      min-height: 450px;
+    }
+
+    md-list-item {
+      min-width: 100%;
+
+      .actions .md-button {
+        font-size: 0.85rem;
+        line-height: 1.65;
+      }
+    }
+  }
 }
