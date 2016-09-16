@@ -1,1 +1,5 @@
-h2 Ordered play list
+md-content(layout="column")
+    md-toolbar(layout="row")
+        h2 Ordered Play list
+    md-virtual-repeat-container#orderedPlayList
+        .repeated-item(md-virtual-repeat="song in ctrl.songsList", md-on-demand, ng-bind="song")

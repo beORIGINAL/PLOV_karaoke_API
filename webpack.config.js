@@ -42,7 +42,10 @@ module.exports = {
 			template: path.join(__dirname, "app", "index.html")
 		}),
 		new webpack.NoErrorsPlugin(),
-		new ExtractTextPlugin("[name].css", { allChunks:true, disable: process.env.NODE_ENV === 'development'})
+		new ExtractTextPlugin("[name].css", { allChunks:true, disable: process.env.NODE_ENV === 'development'}),
+		new webpack.ProvidePlugin({
+			'_': 'lodash'
+		})
 	],
 	node: {
 		fs: "empty"
