@@ -8,7 +8,7 @@ module.exports = {
 	context: path.resolve(__dirname, "app"),
 	devtool: "inline-source-map",
 	entry: {
-		app: "./app.js",
+		app: "./bootstrap",
 		vendors: Object.keys(require("./package.json").dependencies)
 	},
 	output: {
@@ -17,22 +17,22 @@ module.exports = {
 		filename: "[name].js"
 	},
 	module: {
-		resolve: ["", ".js", ".scss", ".html"],
+		resolve: {
+			extensions: ["", ".js", ".scss", ".html"]
+		},
 		loaders: [
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: "babel"
+				loader: "ng-annotate?add=true!babel"
 			},
 			{
-				test: /\.scss/,
-				exclude: /node_modules/,
+				test: /\.s(c|a)ss/,
 				loader: ExtractTextPlugin.extract("style", "css-loader!sass-loader")
 			},
 			{
-				test: /\.html$/,
-				exclude: /node_modules/,
-				loader: "raw"
+				test: /\.jade$/,
+				loader: "ng-cache!jade-html"
 			}
 		]
 	},
@@ -50,6 +50,28 @@ module.exports = {
 	devServer: {
 		hot: true,
 		inline: true,
-		watch: true
+		colors: true,
+		watchPoll: true,
+		contentBase: path.resolve(__dirname, "public"),
+		watchOptions: {
+			ignored: /node_modules/,
+			aggregateTimeout: 300,
+			poll: 500
+		},
+		stats: {
+			hash: false,
+			version: false,
+			timings: false,
+			assets: false,
+			chunks: false,
+			modules: false,
+			reasons: false,
+			children: false,
+			source: false,
+			errors: true,
+			errorDetails: true,
+			warnings: false,
+			publicPath: false
+		}
 	}
 };

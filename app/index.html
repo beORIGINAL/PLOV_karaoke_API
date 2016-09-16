@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="/">
 	<meta charset="UTF-8">
 	<title>Title</title>
 </head>
 <body>
-	<h1>Sample app</h1>
-	<p>Angular next version - Angular{{ 1 + 1 }}</p>
-	<section ng-controller="myCtrl as $ctrl">
+	<md-button ui-sref="all-songs-list" ui-sref-active="active">all-songs-list</md-button>
+	<md-button ui-sref="ordered-play-list" ui-sref-active="active">Ordered-play-list</md-button>
+	<md-button ui-sref="ordered-song-list" ui-sref-active="active">Ordered-song-list</md-button>
 
-		<p ng-bind="$ctrl.myVar"></p>
-		<ol>
-			<li ng-repeat="user in $ctrl.list">
-				<span ng-bind="user.name"></span>
-				<button ng-click="$ctrl.clickMe($index)">Click me</button>
-			</li>
-		</ol>
-	</section>
+	<ui-view layout="column" style="height:500px;" ng-cloak></ui-view>
 </body>
 </html>

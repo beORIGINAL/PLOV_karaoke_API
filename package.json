@@ -21,6 +21,11 @@
     "gulp": "3.9.1",
     "gulp-sass": "^2.3.2",
     "html-webpack-plugin": "^2.22.0",
+    "jade": "^1.11.0",
+    "jade-html-loader": "0.0.3",
+    "jade-loader": "^0.8.0",
+    "ng-annotate-loader": "^0.1.1",
+    "ng-cache-loader": "0.0.21",
     "node-sass": "^3.9.3",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.0.2",
@@ -29,7 +34,11 @@
     "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
-    "angular": "^1.5.8"
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "angular-ui-router": "^1.0.0-beta.2"
   },
   "babel": {
     "presets": [
