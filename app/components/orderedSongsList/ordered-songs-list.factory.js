@@ -6,7 +6,8 @@ export default function OrderedSongsFactory (RestAbstractFactory) {
 	return {
 		getAllReservations,
 		getSongsForReservation,
-		orderSongs
+		orderSongs,
+		removeSongFromQueue
 	};
 
 	function getAllReservations () {
@@ -16,7 +17,7 @@ export default function OrderedSongsFactory (RestAbstractFactory) {
 	}
 
 	function getSongsForReservation (id) {
-		return rest.one(id).customGET('songs')
+		return rest.one(id).get()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
@@ -29,5 +30,11 @@ export default function OrderedSongsFactory (RestAbstractFactory) {
 
 	function orderSong (id) {
 		console.log(id);
+	}
+
+	function removeSongFromQueue (tableId, songId) {
+		return rest.one(tableId).one('songs', songId).remove()
+			.then(RestAbstractFactory.handleSuccess)
+			.catch(RestAbstractFactory.handleError);
 	}
 }

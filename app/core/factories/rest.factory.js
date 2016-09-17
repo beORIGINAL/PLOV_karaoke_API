@@ -31,6 +31,6 @@ export default function RestAbstractFactory (Restangular, LoggerFactory) {
 
     function handleError(error) {
         LoggerFactory.error({ title: 'Error', message: error.message });
-        return error;
+        Promise.reject(error);
     }
 }

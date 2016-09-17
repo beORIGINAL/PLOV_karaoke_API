@@ -9,7 +9,6 @@ md-content.md-whiteframe-6dp
     md-tabs(md-border-bottom, md-align-tabs="bottom", layout="row", flex).md-primary
         md-tab(ng-repeat="table in $ctrl.tablesWhoReserve track by $index", id="Table {{table.id}}", ng-click="$ctrl.loadReservedSongs(table.id)")
             md-tab-label
-                span(ng-bind="table.id")
                 span(ng-bind="table.name")
             md-tab-body
                 md-virtual-repeat-container#songs-container

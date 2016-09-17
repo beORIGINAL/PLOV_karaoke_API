@@ -32,7 +32,10 @@ class orderedSongListController {
 	}
 
 	cancelOrdering (id) {
-
+		this.orderedSongsFactory.removeSongFromQueue(this.tablesWhoReserve, id)
+			.then((data) => {
+				_.pullAllBy(this.reservedSongsList, [{ 'id': id }], 'id');
+			});
 	}
 }
 
