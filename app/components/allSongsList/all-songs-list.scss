@@ -1,12 +1,16 @@
-md-content {
-  min-height: 600px;
-}
+.search-query-container {
+  padding: 2rem 1rem 1rem;
 
-.search {
-  .md-button {
-    min-width: 36px !important;
-    height: 36px !important;
-    margin: 0;
-    padding: 0;
+  md-content {
+    min-height: 600px;
+  }
+
+  .search {
+    .md-button {
+      min-width: 36px !important;
+      height: 36px !important;
+      margin: 0;
+      padding: 0;
+    }
   }
 }

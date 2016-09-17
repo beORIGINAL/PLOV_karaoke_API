@@ -14,19 +14,18 @@ md-content.md-whiteframe-6dp
         .search(layout="row", layout-fill, layout-align="center center")
             md-input-container.md-block(flex="50")
                 label Enter song name...
-                input(type="search", required, name="search-query", ng-model="$ctrl.searchQuery", ng-change="$ctrl.findSongsByQuery()")
+                input(type="search", name="search-query", ng-model="$ctrl.searchQuery", ng-change="$ctrl.findSongsByQuery()")
                 .error-messages(ng-messages="songsAddingFrom.earchQuery.$error", multiple, md-auto-hide="false")
                     .error(ng-message="required")
                         | Field is required
-                    .error(ng-message="minlength")
-                        | Min length is 3
             md-button.md-primary(ng-if="$ctrl.searchQuery.length", ng-click="$ctrl.getDefaultData()") X
         md-content(layout="row", layout-fill)
-            md-list(ng-if="$ctrl.searchResult.length", flex)
+            md-virtual-repeat-container(ng-if="$ctrl.searchResult.length", flex)
+                md-divider
                 md-subheader
                     span(ng-bind="$ctrl.searchResult.length")
                     | &nbsp;songs found
-                md-list-item(ng-repeat="song in $ctrl.searchResult track by song.id")
+                md-list-item(md-virtual-repeat="song in $ctrl.searchResult")
                     .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
                         .md-list-item-text(layout="column", flex="70")
                             h3(ng-bind="song.title")

@@ -1,4 +1,4 @@
-export default function RestAbstractFactory (Restangular, $log) {
+export default function RestAbstractFactory (Restangular, LoggerFactory) {
     'ngInject';
     return {
         copy: Restangular.copy,
@@ -22,5 +22,15 @@ export default function RestAbstractFactory (Restangular, $log) {
 
     function restangularizeCollection (parentItem, collection, route) {
         return Restangular.restangularizeCollection(parentItem, collection, route);
+    }
+
+    function handleSuccess(data) {
+        LoggerFactory.success({title: 'Data loaded'});
+        return data;
+    }
+
+    function handleError(error) {
+        LoggerFactory.error({ title: 'Error', message: error.message });
+        return error;
     }
 }

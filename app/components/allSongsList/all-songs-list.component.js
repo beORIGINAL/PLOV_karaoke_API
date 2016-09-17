@@ -3,14 +3,19 @@ import './all-songs-list.scss';
 
 class allSongsListController {
 	/*@ngInject*/
-	constructor ($stateParams, AllSongsFactory, orderedSongsFactory) {
+	constructor ($state, AllSongsFactory, orderedSongsFactory) {
+		this.$state = $state;
 		this.allSongsFactory = AllSongsFactory;
 		this.orderedSongsFactory = orderedSongsFactory;
-		this.orderedForTable = $stateParams.id;
+		this.orderedForTable = $state.params.id;
 	}
 
 	$onInit () {
 		this.getDefaultData();
+	}
+
+	get canOrderSongs () {
+		return _.some(this.searchResult, {selected: true});
 	}
 
 	getDefaultData () {
@@ -19,7 +24,7 @@ class allSongsListController {
 	}
 
 	findSongsByQuery () {
-		if (_.isUndefined(this.searchQuery) || this.searchQuery.length < 2) {
+		if (_.isUndefined(this.searchQuery) || this.searchQuery.length < 3) {
 			return;
 		}
 		this.allSongsFactory.findSongsByQuery(this.searchQuery)
@@ -28,12 +33,9 @@ class allSongsListController {
 			});
 	}
 
-	get canOrderSongs () {
-		return _.some(this.searchResult, {selected: true});
-	}
-
 	orderSelectedSongs () {
-		this.orderedSongsFactory.orderSongs(_.map(this.searchResult, 'id'), this.orderedForTable);
+		this.orderedSongsFactory.orderSongs(_.map(this.searchResult, 'id'), this.orderedForTable)
+			.then((data) => this.$state.go('ordered-song-list'));
 	}
 }
 
