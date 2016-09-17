@@ -17,7 +17,7 @@ export default function OrderedSongsFactory (RestAbstractFactory) {
 	}
 
 	function getSongsForReservation (id) {
-		return rest.one(id).get()
+		return rest.one(id).customGET('songs')
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}

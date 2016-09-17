@@ -1,8 +1,14 @@
-md-content(flex).md-whiteframe-6dp
+md-content.md-whiteframe-6dp
     md-toolbar(layout="row")
         .md-toolbar-tools
-            h2.md-flex Ordered Play list
-    md-virtual-repeat-container(layout-padding)#orderedPlayList
-        .repeated-item(md-virtual-repeat="song in ctrl.songsList", md-on-demand, ng-bind="song")
-md-button(ui-sref="all-songs-list").md-fab.md-mini
-    strong +
+            h2.md-flex Songs Queue
+md-content(layout="row", layout-fill)
+    md-virtual-repeat-container(flex)#songs-container
+        md-divider
+        md-list-item(md-virtual-repeat="item in $ctrl.songsQueueList")
+            .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+                .md-list-item-text(layout="column", flex="70")
+                    h3(ng-bind="item.song")
+                p(ng-bind="item.sortOrder")
+                md-checkbox(ng-model="item.isPlayed", ng-change="$ctrl.uodateSongStatus(item)").md-primary
+            md-divider(ng-if="!$last")

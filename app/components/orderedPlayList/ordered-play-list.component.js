@@ -3,40 +3,23 @@ import './ordered-play-list.scss';
 
 class orderedPlayListController {
 	/*@ngInject*/
-	constructor(){
-
+	constructor(orderedPlayListFactory){
+		this.OrderedPlayListFactory = orderedPlayListFactory;
+		this.songsQueueList = [];
 	}
 
 	$onInit () {
-		this.songsList = {
-			numLoaded_: 0,
-			toLoad_: 0,
-			// Required.
-			getItemAtIndex: function (index) {
-				if (index > this.numLoaded_) {
-					this.fetchMoreItems_ (index);
-					return null;
-				}
-				return index;
-			},
-			// Required.
-			// For infinite scroll behavior, we always return a slightly higher
-			// number than the previously loaded items.
-			getLength: function () {
-				return this.numLoaded_ + 5;
-			},
-			fetchMoreItems_: function (index) {
-				// For demo purposes, we simulate loading more items with a timed
-				// promise. In real code, this function would likely contain an
-				// $http request.
-				if (this.toLoad_ < index) {
-					this.toLoad_ += 20;
-					$timeout (angular.noop, 300).then (angular.bind (this, function () {
-						this.numLoaded_ = this.toLoad_;
-					}));
-				}
-			}
-		};
+		this.OrderedPlayListFactory.getSongsQueueList()
+			.then((data) => {
+				this.songsQueueList = data;
+			})
+	}
+
+	uodateSongStatus (song) {
+		this.OrderedPlayListFactory.updateSongStatus(song)
+			.then((data) => {
+				console.log('Do smth after update');
+			});
 	}
 }
 
