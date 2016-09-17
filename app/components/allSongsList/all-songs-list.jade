@@ -30,5 +30,5 @@ md-content.md-whiteframe-6dp
                         .md-list-item-text(layout="column", flex="70")
                             h3(ng-bind="song.title")
                             p(ng-bind="song.artist")
-                        md-checkbox(ng-model="song.selected")
+                        md-checkbox(ng-model="song.selected").md-primary
                     md-divider(ng-if="!$last")
