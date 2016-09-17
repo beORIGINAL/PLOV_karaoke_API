@@ -1,5 +1,6 @@
 "use strict";
 const path = require("path");
+const autoprefixer = require('autoprefixer');
 const HtmlPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require("webpack");
@@ -28,7 +29,7 @@ module.exports = {
 			},
 			{
 				test: /\.s(c|a)ss/,
-				loader: ExtractTextPlugin.extract("style", "css-loader!sass-loader")
+				loader: ExtractTextPlugin.extract("style", "css-loader!postcss-loader!sass-loader")
 			},
 			{
 				test: /\.jade$/,
@@ -45,6 +46,18 @@ module.exports = {
 		new ExtractTextPlugin("[name].css", { allChunks:true, disable: process.env.NODE_ENV === 'development'}),
 		new webpack.ProvidePlugin({
 			'_': 'lodash'
+		})
+	],
+	'postcss': [
+		autoprefixer({
+			browsers: [
+				'last 3 versions',
+				'iOS >= 7',
+				'Android >= 4',
+				'Explorer >= 11',
+				'ExplorerMobile >= 11'
+			],
+			cascade: false
 		})
 	],
 	node: {

@@ -29,7 +29,7 @@ export default function OrderedSongsFactory (RestAbstractFactory, LoggerFactory)
 	}
 
 	function getSongsForReservation (id) {
-		// return rest.one(id).get()
+		// return rest.one(id).all('songs').get()
 		// 	.then(handleSuccess)
 		// 	.catch(handleError);
 		return Promise.resolve([
@@ -49,7 +49,7 @@ export default function OrderedSongsFactory (RestAbstractFactory, LoggerFactory)
 	}
 
 	function orderSongs(songsId, orderedFor) {
-		return rest.one(orderedFor).all('songs').post(orderedFor)
+		return rest.one(orderedFor).all('songs').post(songsId)
 			.then(handleSuccess)
 			.catch(handleError);
 	}

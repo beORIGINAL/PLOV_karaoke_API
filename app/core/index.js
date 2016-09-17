@@ -17,8 +17,8 @@ export default angular.module('app.core',
 		'restangular',
 		'toaster'
 	])
+	.run(RestConfig)
 	.config(RouteConfig)
-	.config(RestConfig)
 	.config(ThemeConfig)
 	.factory('RestAbstractFactory', RestAbstractFactory)
 	.factory('ToasterFactory', ToasterFactory)
