@@ -1,4 +1,3 @@
-import '../../node_modules/angular-material/angular-material.scss';
 import './app.scss';
 
 import RouteConfig from './configs/route.config';

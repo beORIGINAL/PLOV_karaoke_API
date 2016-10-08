@@ -1,14 +1,16 @@
-md-content.md-whiteframe-6dp
-    md-toolbar(layout="row")
-        .md-toolbar-tools
-            h2.md-flex Songs Queue
-md-content(layout="row", layout-fill)
-    md-virtual-repeat-container(flex)#songs-container
-        md-divider
-        md-list-item(md-virtual-repeat="item in $ctrl.songsQueueList")
-            .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
-                .md-list-item-text(layout="column", flex="70")
-                    h3(ng-bind="item.song")
-                p(ng-bind="item.sortOrder")
-                md-checkbox(ng-model="item.isPlayed", ng-change="$ctrl.uodateSongStatus(item)").md-primary
-            md-divider(ng-if="!$last")
+md-content(layout="column" layout-fill)
+    md-toolbar(layout="row" layout-align="space-between center")
+        img.logo(ng-src='{{$ctrl.logo}}')
+    md-content(layout="row")
+        md-virtual-repeat-container(flex).songs-container
+            md-list-item(md-virtual-repeat="item in $ctrl.songsQueueList")
+                .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+                    .md-list-item-text(layout="column", flex="70")
+                        h4(ng-bind="item.song")
+                    p(ng-bind="item.reservation")
+                    md-checkbox(ng-model="item.isPlayed", ng-change="$ctrl.updateSongStatus(item)").md-primary
+                md-divider(ng-if="!$last")
+    md-toolbar.ordered-tables(layout="row" layout-align="start center")
+        md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by $index",
+                  ng-click="$ctrl.toggleTableState(table)",
+                  ng-bind="table.name", ng-class="{'active': table.active}")

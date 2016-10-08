@@ -34,6 +34,10 @@ module.exports = {
 			{
 				test: /\.jade$/,
 				loader: "ng-cache!jade-html"
+			},
+			{
+				test: /\.(otf|ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i,
+				loader: `file?name=assets/static/[ext]/[name].[ext]`
 			}
 		]
 	},

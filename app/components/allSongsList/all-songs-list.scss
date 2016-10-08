@@ -1,16 +1,60 @@
-.search-query-container {
-  padding: 2rem 1rem 1rem;
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+}
 
+all-songs-list {
   md-content {
-    min-height: 600px;
+    height: 100%;
+    background: none!important;
+    color: white!important;
   }
 
-  .search {
-    .md-button {
-      min-width: 36px !important;
-      height: 36px !important;
-      margin: 0;
-      padding: 0;
+  & > md-content {
+    padding: 0 2rem;
+  }
+
+  md-toolbar {
+    .search {
+        margin: 0 16%;
+        padding: 0 1.75rem;
+        width: 59.5rem;
+        height: 5rem;
+        border-radius: 2rem;
+        position: relative;
+        overflow: hidden;
+        background: lightgray;
+
+        input {
+          width: 100%;
+          border: none;
+          outline: none;
+          border-radius: 2rem;
+          background: none;
+          font-size: 2rem;
+        }
+      .md-button {
+        @include centered;
+        background: lightgray;
+        min-width: 2rem;
+        min-height: 2rem;
+        margin: 0;
+        right: 1rem;
+      }
     }
+  }
+
+  .search-query-container {
+    padding: 2rem 0;
+
+    h2 {
+      color: lightgray;
+      font-weight: 300;
+    }
+  }
+
+  .search-result {
+    height: 75vh;
   }
 }

@@ -28,12 +28,8 @@ export default function OrderedSongsFactory (RestAbstractFactory) {
 			.catch(RestAbstractFactory.handleError);
 	}
 
-	function orderSong (id) {
-		console.log(id);
-	}
-
-	function removeSongFromQueue (tableId, songId) {
-		return rest.one(tableId).one('songs', songId).remove()
+	function removeSongFromQueue (tableId, id) {
+		return rest.one(tableId).one('queue', id).remove()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}

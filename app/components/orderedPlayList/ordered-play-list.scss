@@ -1,4 +1,40 @@
+$main-border-color: rgba(255,255,255,0.5);
+$main-border: 1px solid $main-border-color;
+$md-hue-border: 1px solid rgb(255,167,38)!important;
+$main-cyan-color: #37d3fe !important;
+
 ordered-play-list {
-  height: 600px;
-  position: relative;
+  md-toolbar:first-of-type {
+    padding-bottom: 2rem;
+  }
+  md-content {
+    height: 100%;
+    background: none!important;
+    color: white!important;
+  }
+
+  & > md-content {
+    padding: 0 2rem;
+  }
+
+  .songs-container {
+    margin: 2rem 0;
+  }
+  .ordered-tables {
+    border-top: $md-hue-border;
+    border-bottom: none!important;
+
+    .md-button {
+      border: $main-border;
+      font-size: 1.5rem!important;
+      padding: 1.6rem 2.2rem!important;
+      margin-right: 1rem;
+
+      &.active {
+        border-color: transparent;
+        background: $main-cyan-color;
+        color: black;
+      }
+    }
+  }
 }

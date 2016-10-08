@@ -2,5 +2,5 @@ export default function RouteConfig ($urlRouterProvider) {
 	'ngInject';
 
 	// $locationProvider.html5Mode(true);
-	$urlRouterProvider.otherwise('/ordered-song-list');
+	$urlRouterProvider.otherwise('/ordered-song-list/1');
 }

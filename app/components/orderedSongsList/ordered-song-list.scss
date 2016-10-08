@@ -1,21 +1,62 @@
+$main-border-color: rgba(255,255,255,0.5);
+$main-border: 1px solid $main-border-color;
+$md-hue-border: 1px solid rgb(255,167,38)!important;
+$main-cyan-color: #37d3fe !important;
+
 ordered-song-list {
   & > md-content {
-    min-height: 600px;
+    height: 100%;
+    padding: 0 2rem;
+    background: none!important;
+    color: white!important;
   }
-  md-tabs {
-    height: 600px;
 
-    #songs-container {
-      width: 100%;
-      min-height: 450px;
+  md-tabs {
+    height: 88%;
+
+    &[md-align-tabs="bottom"]{
+      padding-bottom: 6rem;
+
+      md-tabs-wrapper {
+        height: 6rem;
+        background: none!important;
+        border-top: $md-hue-border;
+      }
+    }
+
+    md-pagination-wrapper {
+      width: 100%!important;
+      padding-top: 0.2rem;
+      height: 6rem;
+    }
+    md-tabs-canvas {
+      height: 6rem;
+      margin: 1rem 4%;
+    }
+
+    md-tab-item {
+      border: $main-border;
+      font-size: 1.5rem!important;
+      padding: 1.6rem 2.2rem!important;
+      margin-right: 1rem;
+
+      &.md-active {
+        border-color: transparent;
+        background: $main-cyan-color;
+        color: black;
+      }
+    }
+
+    .songs-container {
+      height: 75vh;
     }
 
     md-list-item {
-      min-width: 100%;
+      margin: 0 4%;
 
       .actions .md-button {
-        font-size: 0.85rem;
-        line-height: 1.65;
+        min-width: 3rem;
+        min-height: 3rem;
       }
     }
   }

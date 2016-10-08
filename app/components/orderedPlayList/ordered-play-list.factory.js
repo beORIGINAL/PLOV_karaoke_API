@@ -14,6 +14,7 @@ export default function OrderedPlayListFactory (RestAbstractFactory) {
 			.catch(RestAbstractFactory.handleError);
 	}
 
+	//song.id
 	function updateSongStatus(song) {
 		return rest.one(song.id).put()
 			.then(RestAbstractFactory.handleSuccess)
