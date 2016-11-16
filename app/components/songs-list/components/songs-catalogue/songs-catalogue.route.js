@@ -1,8 +1,8 @@
 export default function ($stateProvider) {
 	"ngInject";
 	return $stateProvider.state({
-		name: 'all-songs-list',
-		url: '/:id/all-songs-list',
-		component: 'allSongsList'
+		name: 'songs-list.catalogue',
+		url: '/catalogue',
+		component: 'songsCatalogue'
 	})
 }

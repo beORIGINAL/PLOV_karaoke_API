@@ -1,6 +1,6 @@
-export default function OrderedPlayListFactory (RestAbstractFactory) {
+export default function SongsQueueFactory (RestAbstractFactory) {
 	"ngInject";
-	const url  = 'Queue';
+	const url  = 'queue';
 	const rest = RestAbstractFactory.create(url);
 
 	return {

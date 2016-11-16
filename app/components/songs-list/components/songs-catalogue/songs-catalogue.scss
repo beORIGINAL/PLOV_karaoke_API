@@ -1,0 +1,9 @@
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+}
+
+songs-catalogue {
+
+}

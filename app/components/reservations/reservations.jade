@@ -1,13 +1,14 @@
 md-content(layout="column" layout-fill)
     md-toolbar(layout="row" layout-align="space-between center")
         img.logo(ng-src='{{$ctrl.logo}}')
-        md-button.nav-btn(ui-sref="all-songs-list({id: $ctrl.currentReservationTable})" layout="column" layout-align="center center")
+        md-button.nav-btn(ui-sref="songs-list({id: $ctrl.currentReservationTable})" layout="column" layout-align="center center")
             md-tooltip(md-direction="left")
                 | Wants more?
             img(ng-src="{{$ctrl.addToPlayListIco}}")
 
     md-tabs(md-border-bottom, md-selected="$ctrl.activeTabIndex", md-align-tabs="bottom", layout="row").md-primary
-        md-tab(ng-repeat="table in $ctrl.tablesWhoReserve track by $index", id="Table {{table.id}}", ng-click="$ctrl.loadReservedSongs(table.id)")
+        md-tab(ng-repeat="table in $ctrl.tablesWhoReserve track by $index",
+               id="Table {{table.id}}", ng-click="$ctrl.loadReservedSongs(table)")
             md-tab-label
                 span(ng-bind="table.name")
             md-tab-body(layout="row")
@@ -20,4 +21,3 @@ md-content(layout="column" layout-fill)
                             .actions
                                 md-button(ng-click="$ctrl.cancelOrdering(song)" layout="column" layout-align="center center")
                                     img(ng-src="{{$ctrl.removeFromQueueIco}}")
-                        md-divider(ng-if="!$last")

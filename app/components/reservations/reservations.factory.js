@@ -1,7 +1,7 @@
-export default function OrderedSongsFactory (RestAbstractFactory) {
+export default function ReservationsFactory (RestAbstractFactory) {
 	"ngInject";
-	const url ='Reserv';
-	const rest = RestAbstractFactory.create(url);
+	const reservations = RestAbstractFactory.create('reservations');
+	const songsInQueue = RestAbstractFactory.create('queue');
 
 	return {
 		getAllReservations,
@@ -11,19 +11,20 @@ export default function OrderedSongsFactory (RestAbstractFactory) {
 	};
 
 	function getAllReservations () {
-		return rest.getList()
+		return reservations.getList()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
 
 	function getSongsForReservation (id) {
-		return rest.one(id).customGET('songs')
+		return songsInQueue.getList({reservationId: id})
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
 
 	function orderSongs(songsId, orderedFor) {
-		return rest.one(orderedFor).all('songs').post(songsId)
+		debugger
+		return songsInQueue.one(orderedFor).post(songsId)
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}

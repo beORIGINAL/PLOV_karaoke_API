@@ -1,6 +1,7 @@
 export default function RestConfig ($rootScope, Restangular) {
 	'ngInject';
-	const baseUrl = 'http://localhost:2427/api';
+	const baseUrl = 'http://localhost:2428/api';
+	// const baseUrl = '/api';
 	Restangular.setBaseUrl(baseUrl);
 
 	Restangular.addRequestInterceptor((elem, operation) => {

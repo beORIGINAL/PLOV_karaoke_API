@@ -9,7 +9,6 @@ md-content(layout="column" layout-fill)
                         h4(ng-bind="item.song")
                     p(ng-bind="item.reservation")
                     md-checkbox(ng-model="item.isPlayed", ng-change="$ctrl.updateSongStatus(item)").md-primary
-                md-divider(ng-if="!$last")
     md-toolbar.ordered-tables(layout="row" layout-align="start center")
         md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by $index",
                   ng-click="$ctrl.toggleTableState(table)",

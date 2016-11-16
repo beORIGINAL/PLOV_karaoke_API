@@ -1,10 +1,11 @@
-import allSongsList from './allSongsList';
-import orderedSongsList from './orderedSongsList';
-import orderedPlayList from './orderedPlayList';
+import reservations from './reservations';
+import songsList from './songs-list';
+import songsQueue from './songs-queue';
 
 export default angular.module('app.components',
 	[
-		allSongsList,
-		orderedSongsList,
-		orderedPlayList
-	]).name;
+		reservations,
+		songsList,
+		songsQueue
+	])
+	.name;

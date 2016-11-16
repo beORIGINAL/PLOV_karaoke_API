@@ -1,0 +1,7 @@
+md-content(layout="column" layout-fill)
+    md-toolbar(layout="row" layout-align="space-between center")
+        img.logo(ng-src='{{$ctrl.logo}}')
+    nav(layout="row" layout-align="space-between center")
+        md-button(ui-sref-active="active" ui-sref="songs-list.catalogue") Catalogue
+        md-button(ui-sref-active="active" ui-sref="songs-list.search") Search
+    ui-view

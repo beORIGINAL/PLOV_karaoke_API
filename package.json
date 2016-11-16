@@ -4,7 +4,6 @@
   "description": "",
   "main": "./app/app.js",
   "scripts": {
-    "prestart": "npm i",
     "start": "cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --port 3030 --hot",
     "build": "./node_modules/.bin/webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
