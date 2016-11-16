@@ -3,10 +3,15 @@ $main-border: 1px solid $main-border-color;
 $md-hue-border: 1px solid rgb(255,167,38)!important;
 $main-cyan-color: #37d3fe !important;
 
-songs-list {
-  md-toolbar:first-of-type {
-    padding-bottom: 2rem;
+.logo {
+  width: 25rem;
+
+  img {
+    width: 100%;
   }
+}
+
+songs-list {
   md-content {
     height: 100%;
     background: none!important;
@@ -36,5 +41,18 @@ songs-list {
         color: black;
       }
     }
+  }
+
+  .search-query-container {
+    padding: 2rem 0;
+
+    h2 {
+      color: lightgray;
+      font-weight: 300;
+    }
+  }
+
+  .search-result {
+    height: 75vh;
   }
 }

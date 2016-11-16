@@ -16,36 +16,29 @@ class reservationsController {
 		this.reservedSongsList = [];
 		this.currentReservationTable = $state.params.tableId;
 		this.activeTabIndex = this.currentReservationTable - 1;
-		// {
-		// 	"id": 1,
-		// 	"isActive": true,
-		// 	"songsPerLap": 1,
-		// 	"name": "Reservation 1"
-		// }
 	}
 
 	$onInit(){
 		this.ReservationsFactory.getAllReservations()
 			.then((result) => {
 				this.tablesWhoReserve = result;
-				// const tableId = _.isNull(this.currentReservationTable) ? _.head(result) : this.currentReservationTable;
-				// this.loadReservedSongs(tableId);
-				this.loadReservedSongs(_.head(result));
+				const tableId = _.isNull(this.currentReservationTable) ? _.head(result) : this.currentReservationTable;
+				this.loadReservedSongs(tableId);
 			});
 	}
 
-	loadReservedSongs (activeTable) {
-		this.currentReservationTable = activeTable.id;
-		activeTable.isActive = true;
-		this.ReservationsFactory.getSongsForReservation(activeTable.id)
+	loadReservedSongs (id) {
+		this.currentReservationTable = id;
+		// activeTable.isActive = true;
+		this.ReservationsFactory.getSongsForReservation(id)
 			.then((result) => {
 				this.reservedSongsList = result;
 			})
 	}
 
-	cancelOrdering (song) {
-		this.ReservationsFactory.removeSongFromQueue(this.currentReservationTable, song.queueId)
-			.then(() => _.pullAllBy(this.reservedSongsList, [{ 'id': song.id }], 'id'));
+	cancelOrdering (songId) {
+		this.ReservationsFactory.removeSongFromQueue(songId)
+			.then(() => _.pullAllBy(this.reservedSongsList, [{ 'id': songId }], 'id'));
 	}
 }
 

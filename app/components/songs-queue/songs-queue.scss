@@ -1,7 +1,7 @@
 $main-border-color: rgba(255,255,255,0.5);
 $main-border: 1px solid $main-border-color;
 $md-hue-border: 1px solid rgb(255,167,38)!important;
-$main-cyan-color: #37d3fe !important;
+$main-cyan-color: #0046ed !important;
 
 songs-queue {
   md-toolbar:first-of-type {
@@ -19,6 +19,13 @@ songs-queue {
 
   .songs-container {
     margin: 2rem 0;
+
+    .is-played {
+      opacity: 0.75;
+       h4, p {
+          text-decoration: line-through;
+      }
+    }
   }
   .ordered-tables {
     border-top: $md-hue-border;
@@ -27,8 +34,9 @@ songs-queue {
     .md-button {
       border: $main-border;
       font-size: 1.5rem!important;
-      padding: 1.6rem 2.2rem!important;
+      padding: 1rem 2.5rem !important;
       margin-right: 1rem;
+      min-width: auto;
 
       &.active {
         border-color: transparent;

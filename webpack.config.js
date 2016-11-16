@@ -17,10 +17,13 @@ module.exports = {
 		publicPath: "/",
 		filename: "[name].js"
 	},
+	resolve: {
+		extensions: ["", ".js", ".scss", ".html"],
+		alias: {
+			images: path.resolve(__dirname, 'assets', 'media', 'images')
+		}
+	},
 	module: {
-		resolve: {
-			extensions: ["", ".js", ".scss", ".html"]
-		},
 		loaders: [
 			{
 				test: /\.js$/,
@@ -64,6 +67,9 @@ module.exports = {
 			cascade: false
 		})
 	],
+	sassLoader: {
+		includePaths: [ path.resolve(__dirname, 'assets', 'media', 'images') ]
+	},
 	node: {
 		fs: "empty"
 	},

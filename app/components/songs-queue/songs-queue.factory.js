@@ -13,10 +13,9 @@ export default function SongsQueueFactory (RestAbstractFactory) {
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
-
-	//song.id
+	
 	function updateSongStatus(song) {
-		return rest.one(song.id).put()
+		return RestAbstractFactory.copy(song).put()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}

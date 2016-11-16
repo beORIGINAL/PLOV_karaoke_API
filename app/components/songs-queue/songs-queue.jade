@@ -3,13 +3,13 @@ md-content(layout="column" layout-fill)
         img.logo(ng-src='{{$ctrl.logo}}')
     md-content(layout="row")
         md-virtual-repeat-container(flex).songs-container
-            md-list-item(md-virtual-repeat="item in $ctrl.songsQueueList")
-                .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+            md-list-item(md-virtual-repeat="song in $ctrl.songsQueueList")
+                .song-info(ng-class="{'is-played': song.isPlayed}" layout="row", layout-align="space-between center", layout-padding, flex)
                     .md-list-item-text(layout="column", flex="70")
-                        h4(ng-bind="item.song")
-                    p(ng-bind="item.reservation")
-                    md-checkbox(ng-model="item.isPlayed", ng-change="$ctrl.updateSongStatus(item)").md-primary
+                        h4(ng-bind="song.songTitle")
+                    p(ng-bind="song.reservation")
+                    md-checkbox(ng-model="song.isPlayed", ng-change="$ctrl.updateSongStatus(song)").md-primary
     md-toolbar.ordered-tables(layout="row" layout-align="start center")
-        md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by $index",
+        md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by table.id",
                   ng-click="$ctrl.toggleTableState(table)",
-                  ng-bind="table.name", ng-class="{'active': table.active}")
+                  ng-bind="table.name", ng-class="{'active': table.isActive}")

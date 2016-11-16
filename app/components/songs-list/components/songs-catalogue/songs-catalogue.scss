@@ -5,5 +5,15 @@
 }
 
 songs-catalogue {
+  .alphabet {
+    margin: 0 12%;
 
+    p {
+      margin: 15px 1px;
+
+      .letter {
+        cursor: pointer;
+      }
+    }
+  }
 }

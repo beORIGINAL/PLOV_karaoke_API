@@ -6,7 +6,7 @@ export default function ReservationsFactory (RestAbstractFactory) {
 	return {
 		getAllReservations,
 		getSongsForReservation,
-		orderSongs,
+		updateReservationStatus,
 		removeSongFromQueue
 	};
 
@@ -22,15 +22,14 @@ export default function ReservationsFactory (RestAbstractFactory) {
 			.catch(RestAbstractFactory.handleError);
 	}
 
-	function orderSongs(songsId, orderedFor) {
-		debugger
-		return songsInQueue.one(orderedFor).post(songsId)
+	function removeSongFromQueue (songId) {
+		return songsInQueue.one(songId).remove()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
-
-	function removeSongFromQueue (tableId, id) {
-		return rest.one(tableId).one('queue', id).remove()
+	
+	function updateReservationStatus (reservation) {
+		return reservation.patch()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}

@@ -8,16 +8,16 @@ md-content(layout="column" layout-fill)
 
     md-tabs(md-border-bottom, md-selected="$ctrl.activeTabIndex", md-align-tabs="bottom", layout="row").md-primary
         md-tab(ng-repeat="table in $ctrl.tablesWhoReserve track by $index",
-               id="Table {{table.id}}", ng-click="$ctrl.loadReservedSongs(table)")
+               id="Table {{table.id}}", ng-click="$ctrl.loadReservedSongs(table.id, table)")
             md-tab-label
                 span(ng-bind="table.name")
             md-tab-body(layout="row")
                 md-virtual-repeat-container(flex).songs-container
                     md-list-item(md-virtual-repeat="song in $ctrl.reservedSongsList")
-                        .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+                        .song-info(layout="row", layout-align="space-between center", flex)
                             .md-list-item-text(layout="column", flex="70")
-                                h4(ng-bind="song.title")
-                                p(ng-bind="song.artist")
+                                h4(ng-bind="song.songTitle")
+                                p(ng-bind="song.songArtist")
                             .actions
-                                md-button(ng-click="$ctrl.cancelOrdering(song)" layout="column" layout-align="center center")
+                                md-button(ng-click="$ctrl.cancelOrdering(song.id)" layout="column" layout-align="center center")
                                     img(ng-src="{{$ctrl.removeFromQueueIco}}")
