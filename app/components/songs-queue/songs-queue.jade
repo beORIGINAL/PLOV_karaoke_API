@@ -4,10 +4,12 @@ md-content(layout="column" layout-fill)
     md-content(layout="row")
         md-virtual-repeat-container(flex).songs-container
             md-list-item(md-virtual-repeat="song in $ctrl.songsQueueList")
-                .song-info(ng-class="{'is-played': song.isPlayed}" layout="row", layout-align="space-between center", layout-padding, flex)
+                .song-info(ng-class="{'is-played': song.isPlayed, 'is-forced': song.isForcedQueue}" layout="row", layout-align="space-between center", layout-padding, flex)
                     .md-list-item-text(layout="column", flex="70")
                         h4(ng-bind="song.songTitle")
-                    p(ng-bind="song.reservation")
+                    .reservation-info(layout="row" layout-align="space-between center")
+                        p(ng-bind="song.reservationName")
+                        p(ng-bind="song.lapIndex")
                     md-checkbox(ng-model="song.isPlayed", ng-change="$ctrl.updateSongStatus(song)").md-primary
     md-toolbar.ordered-tables(layout="row" layout-align="start center")
         md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by table.id",

@@ -2,6 +2,8 @@ import './songs-queue.jade';
 import './songs-queue.scss';
 import logo from '../../../assets/media/images/logo.png';
 
+const TIMING_DELAY = 20*1000;
+
 class songsQueueController {
 	/*@ngInject*/
 	constructor($q, SongsQueueFactory, ReservationsFactory){
@@ -15,7 +17,7 @@ class songsQueueController {
 
 	$onInit () {
 		this.getData().then(() => {
-				this.timing = setInterval(this.getData.bind(this) , 10000);
+				this.timing = setInterval(this.getData.bind(this) , TIMING_DELAY);
 			})
 	}
 	
@@ -25,7 +27,7 @@ class songsQueueController {
 
 	getData () {
 		return this.$q.all([
-			this.ReservationsFactory.getAllReservations()
+			this.ReservationsFactory.getAllReservations(false)
 				.then((result) => {
 					this.tablesWhoReserve = result;
 				}),

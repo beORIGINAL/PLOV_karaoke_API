@@ -60,6 +60,15 @@ md-divider {
 
 md-list-item {
   padding: 0 2rem;
+
+  .is-forced {
+    h4, p {
+      color: #ffa726;
+    }
+    .actions .md-button img{
+      filter: drop-shadow(3px 3px 1px #ffa726);
+    }
+  }
 }
 
 .song-info {

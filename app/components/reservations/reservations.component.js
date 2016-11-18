@@ -3,15 +3,21 @@ import './reservations.scss';
 import logo from '../../../assets/media/images/logo.png';
 import addToPlayListIco from '../../../assets/media/images/playlist_add.svg';
 import removeFromQueueIco from '../../../assets/media/images/remove_from_queue.svg';
+import fastForwardIco from '../../../assets/media/images/fast_forward.svg';
+import fastRewindIco from '../../../assets/media/images/fast_rewind.svg';
 
 class reservationsController {
 	/*@ngInject*/
 	constructor($state, ReservationsFactory){
 		this.$state = $state;
 		this.logo = logo;
+		
 		this.addToPlayListIco = addToPlayListIco;
 		this.ReservationsFactory = ReservationsFactory;
 		this.removeFromQueueIco = removeFromQueueIco;
+		this.fastForwardIco = fastForwardIco;
+		this.fastRewindIco = fastRewindIco;
+		
 		this.tablesWhoReserve = [];
 		this.reservedSongsList = [];
 		this.currentReservationTable = $state.params.tableId;
@@ -35,10 +41,18 @@ class reservationsController {
 				this.reservedSongsList = result;
 			})
 	}
+	
+	forceQueue (song) {
+		song.isForcedQueue = !song.isForcedQueue;
+		this.ReservationsFactory.forceQueue(song)
+			.then((data) => {
+				this.reservedSongsList = _.orderBy(this.reservedSongsList, ['isForcedQueue', 'name'], ['desc', 'desc'])
+			});
+	}
 
-	cancelOrdering (songId) {
-		this.ReservationsFactory.removeSongFromQueue(songId)
-			.then(() => _.pullAllBy(this.reservedSongsList, [{ 'id': songId }], 'id'));
+	cancelReservation (song) {
+		this.ReservationsFactory.removeSongFromQueue(song)
+			.then(() => _.pullAllBy(this.reservedSongsList, [{ 'id': song.id }], 'id'));
 	}
 }
 

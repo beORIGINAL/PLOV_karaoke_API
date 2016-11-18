@@ -7,11 +7,12 @@ export default function ReservationsFactory (RestAbstractFactory) {
 		getAllReservations,
 		getSongsForReservation,
 		updateReservationStatus,
-		removeSongFromQueue
+		removeSongFromQueue,
+		forceQueue
 	};
 
-	function getAllReservations () {
-		return reservations.getList()
+	function getAllReservations (isActiveOnly = true) {
+		return reservations.getList({isActiveOnly})
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
@@ -22,8 +23,8 @@ export default function ReservationsFactory (RestAbstractFactory) {
 			.catch(RestAbstractFactory.handleError);
 	}
 
-	function removeSongFromQueue (songId) {
-		return songsInQueue.one(songId).remove()
+	function removeSongFromQueue (song) {
+		return song.remove()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
 	}
@@ -31,6 +32,12 @@ export default function ReservationsFactory (RestAbstractFactory) {
 	function updateReservationStatus (reservation) {
 		return reservation.patch()
 			.then(RestAbstractFactory.handleSuccess)
+			.catch(RestAbstractFactory.handleError);
+	}
+	
+	function forceQueue (song) {
+		return RestAbstractFactory.copy(song).put()
+			.then(() => Promise.resolve('data_updated'))
 			.catch(RestAbstractFactory.handleError);
 	}
 }

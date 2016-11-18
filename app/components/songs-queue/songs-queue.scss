@@ -26,6 +26,10 @@ songs-queue {
           text-decoration: line-through;
       }
     }
+
+    .reservation-info p{
+      margin: auto 2rem;
+    }
   }
   .ordered-tables {
     border-top: $md-hue-border;
