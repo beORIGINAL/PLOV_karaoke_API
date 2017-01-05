@@ -1,7 +1,7 @@
 import route from './songs-search.route';
-import songsSearchComponent from './songs-search.component';
+import { SongsSearchComponent } from './songs-search.component';
 
 export default angular.module('app.songs-list.search', [])
-	.component('songsSearch', songsSearchComponent)
+	.component('songsSearch', SongsSearchComponent)
 	.config(route)
 	.name;

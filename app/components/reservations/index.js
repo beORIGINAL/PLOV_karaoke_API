@@ -1,9 +1,10 @@
 import route from './reservations.route';
-import reservationsComponent from './reservations.component';
 import ReservationsFactory from './reservations.factory';
 
+import { ReservationsComponent } from './reservations.component';
+
 export default angular.module('app.reservations', [])
-	.component('reservations', reservationsComponent)
 	.factory('ReservationsFactory', ReservationsFactory)
+	.component('reservations', ReservationsComponent)
 	.config(route)
 	.name;

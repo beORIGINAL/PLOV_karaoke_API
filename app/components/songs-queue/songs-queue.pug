@@ -1,6 +1,8 @@
 md-content(layout="column" layout-fill)
     md-toolbar(layout="row" layout-align="space-between center")
-        img.logo(ng-src='{{$ctrl.logo}}')
+        .logo
+            img(ng-src='{{$ctrl.logo}}')
+        md-button(ui-sref="catalogue-editor") Open Editor
     md-content(layout="row")
         md-virtual-repeat-container(flex).songs-container
             md-list-item(md-virtual-repeat="song in $ctrl.songsQueueList")

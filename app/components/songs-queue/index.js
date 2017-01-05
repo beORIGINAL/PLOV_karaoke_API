@@ -1,9 +1,14 @@
 import route from './songs-queue.route';
-import songsQueueComponent from './songs-queue.component';
 import SongsQueueFactory from './songs-queue.factory';
+import catalogueEditor from './components/catalogue-editor';
 
-export default angular.module('app.songs-queue', [])
-	.component('songsQueue', songsQueueComponent)
+import { SongsQueueComponent } from './songs-queue.component';
+
+export default angular.module('app.songs-queue',
+	[
+		catalogueEditor
+	])
 	.factory('SongsQueueFactory', SongsQueueFactory)
+	.component('songsQueue', SongsQueueComponent)
 	.config(route)
 	.name;

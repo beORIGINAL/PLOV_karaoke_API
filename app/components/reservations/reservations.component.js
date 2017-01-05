@@ -1,62 +1,59 @@
-import './reservations.jade';
 import './reservations.scss';
-import logo from '../../../assets/media/images/logo.png';
-import addToPlayListIco from '../../../assets/media/images/playlist_add.svg';
-import removeFromQueueIco from '../../../assets/media/images/remove_from_queue.svg';
-import fastForwardIco from '../../../assets/media/images/fast_forward.svg';
-import fastRewindIco from '../../../assets/media/images/fast_rewind.svg';
+import LOGO_IMG from '../../../assets/media/images/logo.png';
+import ADD_TO_IMG from '../../../assets/media/images/playlist_add.svg';
+import REMOVE_IMG from '../../../assets/media/images/remove_from_queue.svg';
+import FAST_FORWARD_IMG from '../../../assets/media/images/fast_forward.svg';
+import FAST_REWIND_IMG from '../../../assets/media/images/fast_rewind.svg';
 
-class reservationsController {
-	/*@ngInject*/
-	constructor($state, ReservationsFactory){
-		this.$state = $state;
-		this.logo = logo;
+export const ReservationsComponent = {
+	template: require('./reservations.pug'),
+	controller: class reservationsController {
+		/*@ngInject*/
+		constructor($state, ReservationsFactory){
+			this.$state = $state;
+			this.ReservationsFactory = ReservationsFactory;
+			
+			this.logo = LOGO_IMG;
+			this.addToPlayListIco = ADD_TO_IMG;
+			this.removeFromQueueIco = REMOVE_IMG;
+			this.fastForwardIco = FAST_FORWARD_IMG;
+			this.fastRewindIco = FAST_REWIND_IMG;
+			
+			this.tablesWhoReserve = [];
+			this.reservedSongsList = [];
+			this.currentReservationTable = $state.params.tableId;
+			this.activeTabIndex = this.currentReservationTable - 1;
+		}
 		
-		this.addToPlayListIco = addToPlayListIco;
-		this.ReservationsFactory = ReservationsFactory;
-		this.removeFromQueueIco = removeFromQueueIco;
-		this.fastForwardIco = fastForwardIco;
-		this.fastRewindIco = fastRewindIco;
+		$onInit(){
+			this.ReservationsFactory.getAllReservations()
+				.then((result) => {
+					this.tablesWhoReserve = result;
+					const tableId = _.isNull(this.currentReservationTable) ? _.head(result) : this.currentReservationTable;
+					this.loadReservedSongs(tableId);
+				});
+		}
 		
-		this.tablesWhoReserve = [];
-		this.reservedSongsList = [];
-		this.currentReservationTable = $state.params.tableId;
-		this.activeTabIndex = this.currentReservationTable - 1;
+		loadReservedSongs (id) {
+			this.currentReservationTable = id;
+			// activeTable.isActive = true;
+			this.ReservationsFactory.getSongsForReservation(id)
+				.then((result) => {
+					this.reservedSongsList = result;
+				})
+		}
+		
+		forceQueue (song) {
+			song.isForcedQueue = !song.isForcedQueue;
+			this.ReservationsFactory.forceQueue(song)
+				.then((data) => {
+					this.reservedSongsList = _.orderBy(this.reservedSongsList, ['isForcedQueue', 'name'], ['desc', 'desc'])
+				});
+		}
+		
+		cancelReservation (song) {
+			this.ReservationsFactory.removeSongFromQueue(song)
+				.then(() => _.pullAllBy(this.reservedSongsList, [{ 'id': song.id }], 'id'));
+		}
 	}
-
-	$onInit(){
-		this.ReservationsFactory.getAllReservations()
-			.then((result) => {
-				this.tablesWhoReserve = result;
-				const tableId = _.isNull(this.currentReservationTable) ? _.head(result) : this.currentReservationTable;
-				this.loadReservedSongs(tableId);
-			});
-	}
-
-	loadReservedSongs (id) {
-		this.currentReservationTable = id;
-		// activeTable.isActive = true;
-		this.ReservationsFactory.getSongsForReservation(id)
-			.then((result) => {
-				this.reservedSongsList = result;
-			})
-	}
-	
-	forceQueue (song) {
-		song.isForcedQueue = !song.isForcedQueue;
-		this.ReservationsFactory.forceQueue(song)
-			.then((data) => {
-				this.reservedSongsList = _.orderBy(this.reservedSongsList, ['isForcedQueue', 'name'], ['desc', 'desc'])
-			});
-	}
-
-	cancelReservation (song) {
-		this.ReservationsFactory.removeSongFromQueue(song)
-			.then(() => _.pullAllBy(this.reservedSongsList, [{ 'id': song.id }], 'id'));
-	}
-}
-
-export default {
-	templateUrl: 'reservations.jade',
-	controller: reservationsController
-}
+};
