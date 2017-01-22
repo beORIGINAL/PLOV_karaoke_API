@@ -4,6 +4,8 @@ $md-hue-border: 1px solid rgb(255,167,38)!important;
 $main-cyan-color: #0046ed !important;
 
 songs-queue {
+  position: relative;
+
   md-toolbar:first-of-type {
     padding-bottom: 2rem;
   }
@@ -15,6 +17,20 @@ songs-queue {
 
   & > md-content {
     padding: 0 2rem;
+  }
+
+  ui-view {
+    flex: 1 1 78%;
+    max-height: 78%;
+  }
+
+  .queue-nav {
+    min-width: 3rem;
+    max-width: 28rem;
+    position: absolute;
+    right: 1rem;
+    top: 2.5rem;
+    z-index: 2;
   }
 
   .songs-container {

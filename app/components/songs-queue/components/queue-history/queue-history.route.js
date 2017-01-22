@@ -1,8 +1,8 @@
 export default function ($stateProvider) {
 	"ngInject";
 	return $stateProvider.state({
-		name: 'queue-history',
-		url: '/queue-history',
+		name: 'songs-queue.history',
+		url: '/history',
 		component: 'queueHistory'
 	})
 }

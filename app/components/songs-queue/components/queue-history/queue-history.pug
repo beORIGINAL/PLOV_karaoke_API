@@ -1,1 +1,16 @@
-h1 Queue History
+nav.queue-nav(layout="row" layout-align="space-between center")
+    md-button.nav-btn(ui-sref=".^", layout="column", layout-align="center center")
+        md-tooltip(md-direction="right")
+            | Turn Back?
+        img(ng-src="{{$ctrl.arrowBackIco}}")
+    input(type="date", ng-change="$ctrl.onDatechange()", name="userDate", ng-model="$ctrl.selectedDate.value", placeholder="yyyy-MM-dd", required)
+md-content(layout="row")
+    md-virtual-repeat-container(flex).songs-container
+        md-list-item(md-virtual-repeat="song in $ctrl.historyList")
+            .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
+                .md-list-item-text(layout="column", flex="70")
+                    h4(ng-bind="song.songTitle")
+                    p(ng-bind="song.songArtist")
+                .reservation-info(layout="row" layout-align="space-between center")
+                    p(ng-bind="song.reservationName")
+                    p(ng-bind="song.lapIndex")

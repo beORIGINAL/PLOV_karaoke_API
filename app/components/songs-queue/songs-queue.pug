@@ -2,18 +2,21 @@ md-content(layout="column" layout-fill)
     md-toolbar(layout="row" layout-align="space-between center")
         .logo
             img(ng-src='{{$ctrl.logo}}')
-        md-button(ui-sref="catalogue-editor") Open Editor
-    md-content(layout="row")
-        md-virtual-repeat-container(flex).songs-container
-            md-list-item(md-virtual-repeat="song in $ctrl.songsQueueList")
-                .song-info(ng-class="{'is-played': song.isPlayed, 'is-forced': song.isForcedQueue}" layout="row", layout-align="space-between center", layout-padding, flex)
-                    .md-list-item-text(layout="column", flex="70")
-                        h4(ng-bind="song.songTitle")
-                    .reservation-info(layout="row" layout-align="space-between center")
-                        p(ng-bind="song.reservationName")
-                        p(ng-bind="song.lapIndex")
-                    md-checkbox(ng-model="song.isPlayed", ng-change="$ctrl.updateSongStatus(song)").md-primary
-    md-toolbar.ordered-tables(layout="row" layout-align="start center")
-        md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by table.id",
-                  ng-click="$ctrl.toggleTableState(table)",
-                  ng-bind="table.name", ng-class="{'active': table.isActive}")
+    ui-view
+        nav.queue-nav(layout="row" layout-align="space-between center")
+            md-button(ui-sref='.history', ui-sref-active) Show history
+            md-button(ui-sref="catalogue-editor", ui-sref-active) Open Editor
+        md-content(layout="row")
+            md-virtual-repeat-container(flex).songs-container
+                md-list-item(md-virtual-repeat="song in $ctrl.songsQueueList")
+                    .song-info(ng-class="{'is-played': song.isPlayed, 'is-forced': song.isForcedQueue}" layout="row", layout-align="space-between center", layout-padding, flex)
+                        .md-list-item-text(layout="column", flex="70")
+                            h4(ng-bind="song.songTitle")
+                        .reservation-info(layout="row" layout-align="space-between center")
+                            p(ng-bind="song.reservationName")
+                            p(ng-bind="song.lapIndex")
+                        md-checkbox(ng-model="song.isPlayed", ng-change="$ctrl.updateSongStatus(song)").md-primary
+        md-toolbar.ordered-tables(layout="row" layout-align="start center")
+            md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by table.id",
+                      ng-click="$ctrl.toggleTableState(table)",
+                      ng-bind="table.name", ng-class="{'active': table.isActive}")
