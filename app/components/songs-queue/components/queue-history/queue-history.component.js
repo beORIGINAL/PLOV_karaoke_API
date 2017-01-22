@@ -1,3 +1,11 @@
-/**
- * Created by ebentkov on 08.12.2016.
- */
+import './queue-history.scss';
+
+export const QueueHistoryComponent = {
+	tepmplate: require('./queue-history.pug'),
+	controller: class QueueHistoryController {
+	/*@ngInject*/
+		constructor ($state) {
+			
+		}
+	}
+};

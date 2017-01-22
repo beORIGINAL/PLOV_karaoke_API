@@ -1,3 +1,8 @@
-/**
- * Created by ebentkov on 08.12.2016.
- */
+export default function ($stateProvider) {
+	"ngInject";
+	return $stateProvider.state({
+		name: 'queue-history',
+		url: '/queue-history',
+		component: 'queueHistory'
+	})
+}

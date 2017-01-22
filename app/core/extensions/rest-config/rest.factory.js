@@ -1,4 +1,4 @@
-export default function RestAbstractFactory (Restangular, LoggerFactory) {
+export default function RestAbstractFactory (Restangular, logger) {
     'ngInject';
     return {
         copy: Restangular.copy,
@@ -25,12 +25,12 @@ export default function RestAbstractFactory (Restangular, LoggerFactory) {
     }
 
     function handleSuccess(data) {
-        LoggerFactory.success({title: 'Data loaded'});
+        logger.success({title: 'Data loaded', type: 'success', data});
         return data;
     }
 
     function handleError(error) {
-        LoggerFactory.error({ title: 'Error', message: error.message });
+        logger.error({ title: 'Error', type:'error', message: error.message });
         Promise.reject(error);
     }
 }

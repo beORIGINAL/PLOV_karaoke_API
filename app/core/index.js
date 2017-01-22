@@ -1,25 +1,19 @@
-import './app.scss';
-
+import CommonConfig from './configs/common.config';
 import RouteConfig from './configs/route.config';
-import RestConfig from './configs/rest.config';
 import ThemeConfig from './configs/theme.config';
 
-import RestAbstractFactory from './factories/rest.factory';
-import ToasterFactory from './factories/toster.factory';
-import LoggerFactory from './factories/logger.factory';
+import Logger from './extensions/logger';
+import RestConfig from './extensions/rest-config';
 
 export default angular.module('app.core',
 	[
 		'ui.router',
 		'ngAnimate',
 		'ngMaterial',
-		'restangular',
-		'toaster'
+		Logger,
+		RestConfig
 	])
-	.run(RestConfig)
+	.config(CommonConfig)
 	.config(RouteConfig)
 	.config(ThemeConfig)
-	.factory('RestAbstractFactory', RestAbstractFactory)
-	.factory('ToasterFactory', ToasterFactory)
-	.factory('LoggerFactory', LoggerFactory)
 	.name;

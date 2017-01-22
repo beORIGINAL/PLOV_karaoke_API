@@ -1,8 +1,8 @@
+import { BASE_URL } from 'core/constants/app-config.constant'
+
 export default function RestConfig ($rootScope, Restangular) {
 	'ngInject';
-	const baseUrl = 'http://localhost:2428/api';
-	// const baseUrl = '/api';
-	Restangular.setBaseUrl(baseUrl);
+	Restangular.setBaseUrl(BASE_URL);
 
 	Restangular.addRequestInterceptor((elem, operation) => {
 		if (_.isEqual(operation, 'remove')) {

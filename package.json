@@ -4,8 +4,8 @@
   "description": "",
   "main": "./app/app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server --hot --progress",
-    "build": "./node_modules/.bin/webpack -p",
+    "start": "webpack-dev-server --env=development --hot --progress --profile --colors",
+    "build": "./node_modules/.bin/webpack -p --env=production --hot --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,7 +14,6 @@
     "babel-core": "6.21.0",
     "babel-loader": "6.2.10",
     "babel-preset-latest": "6.16.0",
-    "cross-env": "3.1.4",
     "css-loader": "0.26.1",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
     "file-loader": "0.9.0",
@@ -28,8 +27,8 @@
     "pug-html-loader": "1.0.10",
     "sass-loader": "4.1.1",
     "style-loader": "0.13.1",
-    "webpack": "2.2.0-rc.3",
-    "webpack-dev-server": "2.2.0-rc.0"
+    "webpack": "2.2.0",
+    "webpack-dev-server": "2.2.0"
   },
   "dependencies": {
     "angular": "1.6.1",
@@ -51,5 +50,21 @@
         }
       ]
     ]
+  },
+  "postcss": {
+    "sourceMap": true,
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions",
+          "iOS >= 7",
+          "Android >= 4",
+          "Explorer >= 11",
+          "ExplorerMobile >= 11"
+        ],
+        "cascade": false,
+        "safe": true
+      }
+    }
   }
 }

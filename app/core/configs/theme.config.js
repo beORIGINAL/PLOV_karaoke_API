@@ -1,10 +1,8 @@
+import { APP_THEME } from 'core/constants/app-config.constant';
+
 export default function ThemeConfig ($mdThemingProvider) {
 	'ngInject';
-	$mdThemingProvider.theme('default')
-		.primaryPalette('orange', {
-			'default': '400',
-			'hue-1': '100',
-			'hue-2': '600',
-			'hue-3': 'A100'
-		})
+	$mdThemingProvider
+		.theme(APP_THEME.default.type)
+		.primaryPalette(APP_THEME.default.name, APP_THEME.default.palette);
 }
