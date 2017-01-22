@@ -57,11 +57,28 @@ songs-queue {
       padding: 1rem 2.5rem !important;
       margin-right: 1rem;
       min-width: auto;
+      position: relative;
 
       &.active {
         border-color: transparent;
         background: $main-cyan-color;
         color: black;
+
+        &.is-lap {
+          background: rgb(255,167,38)!important;
+        }
+      }
+
+      a {
+        line-height: 1.75;
+        width: 3rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: red;
+        border: 1px solid white;
+        position: absolute;
+        top: -5px;
+        right: -5px;
       }
     }
   }

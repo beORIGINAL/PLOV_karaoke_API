@@ -48,11 +48,31 @@ export const SongsQueueComponent = {
 		}
 		
 		toggleTableState (table) {
-			table.isActive = false;
+			if (table.songsPerLap < 2) {
+				table.songsPerLap++;
+				table.isActive = table.songsPerLap > 0;
+			} else if (table.songsPerLap === 2) {
+				table.songsPerLap--;
+			}
+
+			this.updateReservationStatus(table);
+		}
+		
+		changeLap ($event, table) {
+			$event.stopPropagation();
+			this.updateReservationStatus(_.assign(
+				table, {
+					songsPerLap: 0,
+					isActive: false
+				}
+			));
+		}
+		
+		updateReservationStatus (table) {
 			this.ReservationsFactory.updateReservationStatus(table)
 				.then((data) => {
-					console.log('Do smth after update');
-				})
+					console.info('Do smth after update.', data);
+				});
 		}
 	}
 };

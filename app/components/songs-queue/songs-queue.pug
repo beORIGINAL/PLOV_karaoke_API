@@ -17,6 +17,6 @@ md-content(layout="column" layout-fill)
                             p(ng-bind="song.lapIndex")
                         md-checkbox(ng-model="song.isPlayed", ng-change="$ctrl.updateSongStatus(song)").md-primary
         md-toolbar.ordered-tables(layout="row" layout-align="start center")
-            md-button(ng-repeat="table in $ctrl.tablesWhoReserve track by table.id",
-                      ng-click="$ctrl.toggleTableState(table)",
-                      ng-bind="table.name", ng-class="{'active': table.isActive}")
+            md-button(ng-click="$ctrl.toggleTableState(table)", ng-repeat="table in $ctrl.tablesWhoReserve track by table.id", ng-class="{'active': table.isActive, 'is-lap':table.isActive && table.songsPerLap > 1}")
+                a(ng-if="table.isActive && table.songsPerLap > 0", ng-click="$ctrl.changeLap($event, table)") X
+                span(ng-bind="table.name")
