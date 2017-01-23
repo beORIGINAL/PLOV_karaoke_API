@@ -2,6 +2,7 @@ import './songs-queue.scss';
 import LOGO_IMG from '../../../assets/media/images/logo.png';
 
 const TIMING_DELAY = 20*1000;
+let CLICK_COUNTER = 0;
 
 export const SongsQueueComponent = {
 	template: require('./songs-queue.pug'),
@@ -48,18 +49,25 @@ export const SongsQueueComponent = {
 		}
 		
 		toggleTableState (table) {
-			if (table.songsPerLap < 2) {
+			if(CLICK_COUNTER === 2 && table.isActive && table.songsPerLap === 1) {
+				console.info(table.songsPerLap);
+				table.isActive = false;
+				table.songsPerLap = 0;
+				CLICK_COUNTER = 0;
+			} else if (table.songsPerLap < 2) {
 				table.songsPerLap++;
 				table.isActive = table.songsPerLap > 0;
+				CLICK_COUNTER++;
 			} else if (table.songsPerLap === 2) {
 				table.songsPerLap--;
 			}
-
 			this.updateReservationStatus(table);
+			
 		}
 		
 		changeLap ($event, table) {
 			$event.stopPropagation();
+			CLICK_COUNTER = 0;
 			this.updateReservationStatus(_.assign(
 				table, {
 					songsPerLap: 0,
