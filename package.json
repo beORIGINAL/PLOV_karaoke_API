@@ -4,8 +4,8 @@
   "description": "",
   "main": "./app/app.js",
   "scripts": {
-    "start": "webpack-dev-server --env=development --hot --progress --profile --colors",
-    "build": "./node_modules/.bin/webpack -p --env=production --hot --progress --profile --colors",
+    "start": "webpack-dev-server --env.development --hot --progress --profile --colors",
+    "build": "./node_modules/.bin/webpack -p --env.production --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
