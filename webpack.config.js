@@ -11,7 +11,7 @@ const PUBLIC_PATH = ENVIRONMENT === 'development' ? `http://localhost:${PORT}/` 
 
 module.exports = {
     context: path.resolve(__dirname, "app"),
-    devtool: "cheap-module-eval-source-map",
+    devtool: 'eval',
     devServer: {
         port: PORT,
         host: 'localhost',
@@ -140,7 +140,8 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(ENVIRONMENT)
             }
-        })
+        }),
+        // new webpack.SourceMapDevToolPlugin()
         // new webpack.LoaderOptionsPlugin({
         //     minimize: true,
         //     debug: false

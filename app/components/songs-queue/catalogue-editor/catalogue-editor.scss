@@ -1,0 +1,100 @@
+@mixin centered {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+}
+%input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  background: none;
+  font-size: 2rem;
+}
+
+catalogue-editor {
+  md-content {
+    height: 100%;
+    background: none!important;
+    color: white!important;
+  }
+
+  & > md-content {
+    padding: 0 2rem;
+  }
+
+  md-toolbar {
+    .search {
+      margin: 0 15%;
+      padding: 0 1.75rem;
+      width: 50.5rem;
+      height: 5rem;
+      border-radius: 2rem;
+      position: relative;
+      overflow: hidden;
+      background: lightgray;
+
+      input {
+        @extend %input;
+      }
+      .md-button {
+        @include centered;
+        background: lightgray;
+        min-width: 2rem;
+        min-height: 2rem;
+        margin: 0;
+        right: 1rem;
+      }
+    }
+  }
+
+  .search-result {
+    .song-info {
+      input {
+        @extend %input;
+        background: lightgray;
+        text-overflow: ellipsis;
+        padding: 0.5rem 1.2rem;
+        position: relative;
+        pointer-events: auto;
+      }
+    }
+  }
+
+  .editing-enabled {
+    md-toolbar,
+    md-list-item:not(.editable) {
+      pointer-events: none;
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+    md-list-item.editable {
+      background: rgba(255,255,255,0.2);
+
+      .song-info {
+        &, .md-list-item-text {
+          padding: 0;
+        }
+        p {
+          flex-direction: column;
+          margin-right: 3rem;
+          margin-bottom: 1rem;
+          strong {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .btn-group {
+        display: flex;
+        justify-content: space-between;
+        &, .md-button {
+          padding: 0;
+          min-width: 4rem;
+          justify-content: center;
+          display: flex;
+        }
+      }
+    }
+  }
+}

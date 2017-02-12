@@ -29,11 +29,13 @@ export const CatalogueEditorComponent = {
 		get canOrderSongs () {
 			return _.some(this.searchResult, {selected: true});
 		}
-		
+
+		get editingEnabled () {
+			return _.some(this.searchResult, {inEditing: true});
+		}
 		getDefaultData () {
 			this.searchQuery = '';
 			this.searchResult = [];
-			this.editingEnabled = false;
 			this.editableSongCopy = {};
 		}
 		
@@ -57,18 +59,18 @@ export const CatalogueEditorComponent = {
 				event.stopPropagation();
 				event.preventDefault();
 			}
-			this.editingEnabled = true;
+            this.editableSongCopy = _.cloneDeep(song.plain());
 			song.inEditing = true;
-			this.editableSongCopy = _.cloneDeep(song);
 		}
 		
 		rejectChanges (song) {
-			song.inEditing = false;
-			this.editingEnabled = false;
+			_.assignIn(song, this.editableSongCopy);
+            song.inEditing = false;
 		}
 		
-		updateSongData () {
-			
+		updateSongData (song) {
+            song.inEditing = false;
+            this.SongsListFactory.updateSongInfo(song);
 		}
 	}
-}
+};

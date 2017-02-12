@@ -1,8 +1,8 @@
 import route from './songs-list.route';
 import SongsListFactory from './songs-list.factory';
 
-import songsSearch from './components/songs-search';
-import songsCatalogue from './components/songs-catalogue';
+import songsSearch from './songs-search';
+import songsCatalogue from './songs-catalogue';
 
 import { SongsListComponent } from './songs-list.component';
 

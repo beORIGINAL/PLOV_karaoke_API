@@ -8,7 +8,8 @@ export default function SongsListFactory (RestAbstractFactory) {
 		findSongsByQuery,
 		findSongByStartWith,
 		orderSongs,
-		orderedForTable: null
+		orderedForTable: null,
+		updateSongInfo
 	};
 
 	function findSongsByQuery (query) {
@@ -34,5 +35,11 @@ export default function SongsListFactory (RestAbstractFactory) {
 		return songsInQueue.post(orderedSongs)
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError);
+	}
+
+	function updateSongInfo (song) {
+		return song.put()
+			.then(RestAbstractFactory.handleSuccess)
+			.catch(RestAbstractFactory.handleError)
 	}
 }
