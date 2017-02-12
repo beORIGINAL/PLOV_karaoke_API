@@ -3,7 +3,7 @@ import ADD_TO_IMG from 'images/playlist_add.svg';
 import TURN_BACK_IMG from 'images/arrow_back.svg';
 
 export const SongsCatalogueComponent = {
-	templateUrl: require('./songs-catalogue.pug'),
+	template: require('./songs-catalogue.pug'),
 	controller: class SongsCatalogueController {
 		/*@ngInject*/
 		constructor ($state, SongsListFactory) {

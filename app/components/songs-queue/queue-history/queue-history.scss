@@ -1,0 +1,13 @@
+queue-history {
+  .date-range {
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+    max-height: 3rem;
+    margin: 1rem auto;
+
+    input {
+      width: 80%;
+    }
+  }
+}

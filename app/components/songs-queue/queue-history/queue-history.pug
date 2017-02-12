@@ -3,6 +3,8 @@ nav.queue-nav(layout="row" layout-align="space-between center")
         md-tooltip(md-direction="right")
             | Turn Back?
         img(ng-src="{{$ctrl.arrowBackIco}}")
+.date-range
+    img(ng-src="{{$ctrl.dateTangeIco}}")
     input(type="date", ng-change="$ctrl.onDatechange()", name="userDate", ng-model="$ctrl.selectedDate.value", placeholder="yyyy-MM-dd", required)
 md-content(layout="row")
     md-virtual-repeat-container(flex).songs-container

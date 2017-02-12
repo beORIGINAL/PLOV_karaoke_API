@@ -49,6 +49,14 @@ reservations {
 
     .songs-container {
       height: 75vh;
+
+      .md-list-item-text {
+        margin: 1rem 0;
+      }
+
+      .song-info h4 {
+        margin: 1rem 0;
+      }
     }
 
     md-list-item {

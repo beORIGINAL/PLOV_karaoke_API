@@ -9,23 +9,23 @@ md-toolbar(layout="row" layout-align="start center")
         .en(layout="row", layout-wrap, layout-align="center start")
             p(ng-repeat='enLetter in $ctrl.enAlphabet track by $index')
                 span.letter(ng-bind="::enLetter", ng-click="$ctrl.findByFirstLetter(enLetter)")
-                span(ng-if="!$last") -
+                span.fade-in(ng-if="!$last") -
         .ru(layout="row", layout-wrap, layout-align="center start")
             p(ng-repeat='ruLetter in $ctrl.ruAlphabet track by $index')
                 span.letter(ng-bind="::ruLetter", ng-click="$ctrl.findByFirstLetter(ruLetter)")
-                span(ng-if="!$last") -
+                span.fade-in(ng-if="!$last") -
 
-    md-button.nav-btn(ng-click="$ctrl.orderSelectedSongs()", ng-if="$ctrl.canOrderSongs", layout="column" layout-align="center center")
+    md-button.nav-btn.fade-in(ng-click="$ctrl.orderSelectedSongs()", ng-if="$ctrl.canOrderSongs", layout="column" layout-align="center center")
         md-tooltip(md-direction="left")
             | Add selected songs
         img(ng-src="{{$ctrl.addToPlayListIco}}")
 md-content(layout="row")
     form.search-query-container(layout="column", layout-align="center center", name="songsAddingFrom", layout-fill)
-        h2(ng-if="$ctrl.searchResult.length")
+        h2.fade-in(ng-if="$ctrl.searchResult.length")
             span(ng-bind="$ctrl.searchResult.length")
             span &nbsp;songs found
         md-content.search-result(layout-fill)
-            md-virtual-repeat-container(ng-if="$ctrl.searchResult.length", layout-fill)
+            md-virtual-repeat-container.fade-in(ng-if="$ctrl.searchResult.length", layout-fill)
                 md-list-item(md-virtual-repeat="song in $ctrl.searchResult")
                     .song-info(layout="row", layout-align="space-between center", layout-padding, flex)
                         .md-list-item-text(layout="column", flex="70")
