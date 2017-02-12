@@ -9,7 +9,9 @@ export default function SongsListFactory (RestAbstractFactory) {
 		findSongByStartWith,
 		orderSongs,
 		orderedForTable: null,
-		updateSongInfo
+        addNewSong,
+		updateSongInfo,
+        deleteSong
 	};
 
 	function findSongsByQuery (query) {
@@ -37,8 +39,19 @@ export default function SongsListFactory (RestAbstractFactory) {
 			.catch(RestAbstractFactory.handleError);
 	}
 
+	function addNewSong (newSong) {
+		return songs.post(newSong)
+			.then(RestAbstractFactory.handleSuccess)
+			.catch(RestAbstractFactory.handleError)
+	}
 	function updateSongInfo (song) {
 		return song.put()
+			.then(RestAbstractFactory.handleSuccess)
+			.catch(RestAbstractFactory.handleError)
+	}
+
+	function deleteSong (song) {
+		return song.remove()
 			.then(RestAbstractFactory.handleSuccess)
 			.catch(RestAbstractFactory.handleError)
 	}

@@ -3,6 +3,7 @@
   top: 50%;
   transform: translate3d(0,-50%,0);
 }
+
 %input {
   width: 100%;
   border: none;
@@ -17,6 +18,10 @@ catalogue-editor {
     height: 100%;
     background: none!important;
     color: white!important;
+
+    .search-query-container {
+      padding-top: 2rem;
+    }
   }
 
   & > md-content {

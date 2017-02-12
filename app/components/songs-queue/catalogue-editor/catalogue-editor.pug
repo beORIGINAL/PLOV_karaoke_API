@@ -15,12 +15,11 @@ md-content(layout="column" layout-fill, ng-class="{ 'editing-enabled': $ctrl.edi
             layout="column" layout-align="center center")
                 img(ng-src="{{$ctrl.closeIco}}")
 
-        md-button.fade-in.nav-btn(ng-click="$ctrl.orderSelectedSongs()",
-        ng-if="$ctrl.canOrderSongs",
+        md-button.fade-in.nav-btn(ng-click="$ctrl.addNewSong()"
         layout="column" layout-align="center center")
             md-tooltip(md-direction="left")
-                | Add selected songs
-            img(ng-src="{{$ctrl.addToPlayListIco}}")
+                | Add new song
+            img(ng-src="{{$ctrl.addItemIco}}")
     md-content(layout="row")
         form.search-query-container(layout="column", layout-align="center center", name="songsAddingFrom", layout-fill)
             h2.fade-in(ng-if="$ctrl.searchResult.length")
@@ -46,3 +45,5 @@ md-content(layout="column" layout-fill, ng-class="{ 'editing-enabled': $ctrl.edi
                                     img(ng-src="{{$ctrl.doneIco}}")
                                 md-button(ng-click="$ctrl.rejectChanges(song)").md-primary
                                     img(ng-src="{{$ctrl.closeWhiteIco}}")
+                                md-button(ng-click="$ctrl.deleteSong(song)", ng-if="!song.inCreating").md-primary
+                                    img(ng-src="{{$ctrl.deleteForeverIco}}")
