@@ -89,7 +89,7 @@ export const CatalogueEditorComponent = {
             if (song.inCreating) {
             	song.inCreating = false;
                 return this.SongsListFactory.addNewSong(song)
-					.then((data) => song = data);
+					.then((data) => _.assignIn(_.find(this.searchResult, {id: song.id}), data));
 			}
             return this.SongsListFactory.updateSongInfo(song);
 		}

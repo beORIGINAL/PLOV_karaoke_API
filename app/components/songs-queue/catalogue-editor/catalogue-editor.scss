@@ -65,7 +65,34 @@ catalogue-editor {
       }
     }
   }
+  md-list-item {
+    .song-info {
+      min-height: 82px;
 
+      &, .md-list-item-text {
+        padding: 0;
+      }
+      p {
+        flex-direction: column;
+        margin-right: 3rem;
+        margin-bottom: 1rem;
+        strong {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      &, .md-button {
+        padding: 0;
+        min-width: 4rem;
+        justify-content: center;
+        display: flex;
+      }
+    }
+  }
   .editing-enabled {
     md-toolbar,
     md-list-item:not(.editable) {
@@ -75,31 +102,6 @@ catalogue-editor {
     }
     md-list-item.editable {
       background: rgba(255,255,255,0.2);
-
-      .song-info {
-        &, .md-list-item-text {
-          padding: 0;
-        }
-        p {
-          flex-direction: column;
-          margin-right: 3rem;
-          margin-bottom: 1rem;
-          strong {
-            font-size: 1.5rem;
-          }
-        }
-      }
-
-      .btn-group {
-        display: flex;
-        justify-content: space-between;
-        &, .md-button {
-          padding: 0;
-          min-width: 4rem;
-          justify-content: center;
-          display: flex;
-        }
-      }
     }
   }
 }
